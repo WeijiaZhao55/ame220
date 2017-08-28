@@ -1,0 +1,105 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>饱了-我的菜谱</title>
+<link rel="stylesheet" type="text/css" href="style/myDish.css" />
+</head>
+<body>
+<div class="top">
+  <div class="logo">
+    <img alt="logoPic" src="image/logo.png" width="220px" height="150px">
+  </div>
+  <div class="search">
+    <form>
+      <input class="searchItem" type="text" placeholder="请输入菜谱/菜单/作者">
+      <button class="searchButton" type="submit"></button>
+    </form>
+  </div>
+  <div class="userPortal">
+    <div class="userProfile">
+      <img alt="userPic" src="image/user.png" width="60px" height="60px">
+    </div>
+    <div class="userOption">
+      <p><b>登陆</b></p>
+      <p><b>注册</b></p>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="left">   <!-- 此处调取用户信息数据 -->
+  <img class="myPic" alt="myPic" src="image/user.jpg">
+  <p class="myPage">XXX的主页</p>
+  <p>等级：10</p>
+  <p>积分：2100</p>
+  <p>关注：100</p>
+  <p>粉丝：278</p>
+</div>
+<div class="mainBody">
+  <table class="upper">
+    <tr>
+      <td class="upperBlock">
+        <button class="headChoice" type="button"><b>我的菜谱</b></button>
+      </td>
+      <td class="upperBlock">
+        <button class="headChoice" type="button">我的菜单</button>
+      </td>
+      <td class="upperBlock">
+        <button class="headChoice" type="button">我收藏的菜谱</button>
+      </td>
+      <td class="upperBlock">
+        <button class="headChoice" type="button">我收藏的菜单</button>
+      </td>
+    </tr>
+  </table>
+  <button class="add" type="button">+</button>
+  <table class="content">   <!-- 此处调上传数据 -->
+    <tr>
+      <td class="dish1" width="20%">
+        <img class="dishPic1" alt="1,1" src="image/exp3.jpg" width="100%">
+        <div class="info1">
+          <p class="dishName">土豆豆浆</p>
+          <p class="upTime">2017-08-02</p>
+        </div>
+      </td>
+      <td class="dish2" width="20%">
+        <img class="dishPi2c" alt="1,2" src="image/exp4.jpg" width="100%">
+        <div class="info2">
+          <p class="dishName">剁椒芋头</p>
+          <p class="upTime">2017-08-02</p>
+        </div>
+      </td>
+      <td class="dish3" width="20%">
+        <img class="dishPic3" alt="1,3" src="image/exp5.jpg" width="100%">
+        <div class="info3">
+          <p class="dishName">酸辣粉</p>
+          <p class="upTime">2017-08-02</p>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="dish1" width="20%">
+        <img class="dishPic" alt="1,1" src="image/exp3.jpg" width="100%">
+        <div class="info">
+          <p class="dishName">土豆豆浆</p>
+          <p class="upTime">2017-08-02</p>
+        </div>
+      </td>
+      <td class="dish2" width="20%">
+        <img class="dishPic" alt="1,2" src="image/exp4.jpg" width="100%">
+        <div class="info">
+          <p class="dishName">剁椒芋头</p>
+          <p class="upTime">2017-08-02</p>
+        </div>
+      </td>
+      <td class="dish3" width="20%">
+        <img class="dishPic" alt="1,3" src="image/exp5.jpg" width="100%">
+        <div class="info">
+          <p class="dishName">酸辣粉</p>
+          <p class="upTime">2017-08-02</p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
