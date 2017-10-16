@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+  <title>Slide Show</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script>
+var TAU = Math.PI*2;
+var round = Math.round;
+var min = Math.min;
+var max = Math.max;
+var ceil = Math.ceil;
+module.exports = hsv2rgb;
+function set(r, g, b, out) {
+  out[0] = round(r * 255);
+  out[1] = round(g * 255);
+  out[2] = round(b * 255);
+}
+function clamp(v, l, u) {
+  return max(l, min(v, u));
+}
+function hsv2rgb(h, s, v, out) {
+  out = out || [0, 0, 0];
+  h = h % 360;
+  s = clamp(s, 0, 1);
+  v = clamp(v, 0, 1);
+  // Grey
+  if (!s) {
+    out[0] = out[1] = out[2] = ceil(v * 255);
+  } else {
+    var b = ((1 - s) * v);
+    var vb = v - b;
+    var hm = h % 60;
+    switch((h/60)|0) {
+      case 0: set(v, vb * h / 60 + b, b, out); break;
+      case 1: set(vb * (60 - hm) / 60 + b, v, b, out); break;
+      case 2: set(b, v, vb * hm / 60 + b, out); break;
+      case 3: set(b, vb * (60 - hm) / 60 + b, v, out); break;
+      case 4: set(vb * hm / 60 + b, b, v, out); break;
+      case 5: set(v, b, vb * (60 - hm) / 60 + b, out); break;
+    }
+  }
+  return out;
+}
+   </script>
+  <script>
+    var current = 0;
+    var imageURLs = "";
+    var muT = "";
+    var muT1=new Array();
+    var mu = "";
+    var i=0;
+    function start(){
+      imageURLs = window.location.hash.replace("#","").split(",")
+      for(i = 0; i < imageURLs.length; i++){
+        var url = imageURLs[i];
+        mu += '<div class="slide" style="background-image:url(' + url + ')"> </div>';
+        muT1[i]=i+1;
+      }
+      muT = muT+'<button onclick="access(1)" class="num">'+ 1 + '</button>'+'<button onclick="access(2)" class="num">'+ 2 + '</button>'+
+      '<button onclick="access(3)" class="num">'+ 3 + '</button>'+'<button onclick="access(4)" class="num">'+ 4 + '</button>'+
+      '<button onclick="access(5)" class="num">'+ 5 + '</button>';
+      //$("#container").html(mu);
+      document.getElementById("container").innerHTML = mu;
+      //$("#track").html(muT);
+      document.getElementById("track").innerHTML = muT;
+      init();
+    }
+    function init(){
+      $("#container .slide").css({"display":"none"});
+      $("#container .slide:nth-of-type(1)").css({"display":"block"});
+      $("#track .num:nth-of-type(1)").addClass("selected");
+      $("#container").css({"background": getBGColor(current)});
+    }
+    function access(i){
+      switch (i) {
+        case 1:
+        var n = imageURLs.length;
+        var next = (1 + 1)%n;
+        var slides = document.getElementById("container").getElementsByClassName("slide");
+        var trackNos = document.getElementById("track").getElementsByClassName("num");
+        for (var j = 1; j < 6; j++) {
+          $("#container .slide:nth-of-type(" + (j)+ ")").stop().animate({"margin-left":"-100%"});
+          $("#track .num:nth-of-type(" + (j) + ")").removeClass("selected");
+        }
+        $("#container .slide:nth-of-type(" + (1)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
+        $("#track .num:nth-of-type(" + (1) + ")").addClass("selected");
+        $("#container").css({"background": getBGColor(muT1[1]-1)});
+        break;
+        case 2:
+        var n = imageURLs.length;
+        var next = (2 + 1)%n;
+        var slides = document.getElementById("container").getElementsByClassName("slide");
+        var trackNos = document.getElementById("track").getElementsByClassName("num");
+        for (var j = 1; j < 6; j++) {
+          $("#container .slide:nth-of-type(" + (j)+ ")").stop().animate({"margin-left":"-100%"});
+          $("#track .num:nth-of-type(" + (j) + ")").removeClass("selected");
+        }
+        $("#container .slide:nth-of-type(" + (2)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
+        $("#track .num:nth-of-type(" + (2) + ")").addClass("selected");
+        $("#container").css({"background": getBGColor(muT1[2]-1)});
+        break;
+        case 3:
+        var n = imageURLs.length;
+        var next = (3 + 1)%n;
+        var slides = document.getElementById("container").getElementsByClassName("slide");
+        var trackNos = document.getElementById("track").getElementsByClassName("num");
+        for (var j = 1; j < 6; j++) {
+          $("#container .slide:nth-of-type(" + (j)+ ")").stop().animate({"margin-left":"-100%"});
+          $("#track .num:nth-of-type(" + (j) + ")").removeClass("selected");
+        }
+        $("#container .slide:nth-of-type(" + (3)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
+        $("#track .num:nth-of-type(" + (3) + ")").addClass("selected");
+        $("#container").css({"background": getBGColor(muT1[3]-1)});
+        break;
+        case 4:
+        var n = imageURLs.length;
+        var next = (4 + 1)%n;
+        var slides = document.getElementById("container").getElementsByClassName("slide");
+        var trackNos = document.getElementById("track").getElementsByClassName("num");
+        for (var j = 1; j < 6; j++) {
+          $("#container .slide:nth-of-type(" + (j)+ ")").stop().animate({"margin-left":"-100%"});
+          $("#track .num:nth-of-type(" + (j) + ")").removeClass("selected");
+        }
+        $("#container .slide:nth-of-type(" + (4)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
+        $("#track .num:nth-of-type(" + (4) + ")").addClass("selected");
+        $("#container").css({"background": getBGColor(muT1[4]-1)});
+        break;
+        case 5:
+        var n = imageURLs.length;
+        var next = (5 + 1)%n;
+        var slides = document.getElementById("container").getElementsByClassName("slide");
+        var trackNos = document.getElementById("track").getElementsByClassName("num");
+        for (var j = 1; j < 6; j++) {
+          $("#container .slide:nth-of-type(" + (j)+ ")").stop().animate({"margin-left":"-100%"});
+          $("#track .num:nth-of-type(" + (j) + ")").removeClass("selected");
+        }
+        $("#container .slide:nth-of-type(" + (5)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
+        $("#track .num:nth-of-type(" + (5) + ")").addClass("selected");
+        $("#container").css({"background": getBGColor(muT1[5]-1)});
+        break;
+      }
+
+
+
+    //  current = next; // set new current slide
+
+    }
+    function goNextSlide(){
+      var n = imageURLs.length;
+      var next = (current + 1)%n;
+      var slides = document.getElementById("container").getElementsByClassName("slide");
+      var trackNos = document.getElementById("track").getElementsByClassName("num");
+      $("#container .slide:nth-of-type(" + (current + 1)+ ")").stop().animate({"margin-left":"-100%"});
+      $("#container .slide:nth-of-type(" + (next+ 1)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
+      $("#track .num:nth-of-type(" + (current + 1) + ")").removeClass("selected");
+      $("#track .num:nth-of-type(" + (next + 1) + ")").addClass("selected");
+      current = next; // set new current slide
+      $("#container").css({"background": getBGColor(current)});
+    }
+    function goPrevSlide(){
+      var n = imageURLs.length;
+      var next = (current + n - 1)%n;
+      var slides = document.getElementById("container").getElementsByClassName("slide");
+      var trackNos = document.getElementById("track").getElementsByClassName("num");
+      $("#container .slide:nth-of-type(" + (current + 1)+ ")").stop().animate({"margin-left":"100%"});
+      $("#container .slide:nth-of-type(" + (next+ 1)+ ")").stop().css({"margin-left": "-100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
+      $("#track .num:nth-of-type(" + (current + 1) + ")").removeClass("selected");
+      $("#track .num:nth-of-type(" + (next + 1) + ")").addClass("selected");
+      current = next; // set new current slide
+      $("#container").css({"background": getBGColor(current)});
+    }
+    function getBGColor(c)
+    {
+      var t = imageURLs.length;
+      //var cv = parseInt((1 - (c/t)) * 255);
+      var cv = hsv2rgb(parseInt((1 - (c/t)) * 360), 1, 1);
+      console.log(c, cv);
+      return "rgb(" + cv[0] + "," + cv[1] + "," + cv[2] + ")";
+    }
+  </script>
+  <style>
+    body{
+      margin: 0px;
+    }
+    #container
+    {
+       height: 100%;
+       width: 100%;
+       position: absolute;
+       overflow: hidden;
+       background: black;
+       transition-duration: 1s;
+       perspective: 500px;
+    }
+    .slide{
+       margin-left: 0%;
+       display: block;
+       width: 100%;
+       height: 100%;
+       background-position: 50%;
+       background-repeat: no-repeat;
+       background-size: contain;
+       position: absolute;
+    }
+    .navB{
+        position: absolute;
+        top: calc(50% - 20px);
+    }
+    #prev{
+        left: 10px;
+    }
+    #next{
+        right: 10px;
+    }
+    #track{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        text-align: center;
+    }
+    .num{
+      display: inline-block;
+      background:none;
+      margin: 0px;
+      width: 50px;
+      height: 50px;
+      color: white;
+      text-shadow: black 0px 0px 2px;
+      line-height: 50px;
+      border-radius: 30px;
+    }
+    .selected{
+      background: gold;
+      font-size: 120%;
+    }
+  </style>
+</head>
+
+
+<body onload='start()'>
+  <div id='container'>
+  </div>
+
+  <button onclick="goPrevSlide()" class='navB' id='prev'> < </button>
+  <button onclick="goNextSlide()" class='navB' id='next'> > </button>
+
+  <div id='track'></div>
+
+</body>
+
+</html>
