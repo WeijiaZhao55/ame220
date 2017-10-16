@@ -72,73 +72,19 @@ function hsv2rgb(h, s, v, out) {
       $("#container").css({"background": getBGColor(current)});
     }
     function access(i){
-      switch (i) {
-        case 1:
+
         var n = imageURLs.length;
-        var next = (1 + 1)%n;
+        var next = (i + 1)%n;
         var slides = document.getElementById("container").getElementsByClassName("slide");
         var trackNos = document.getElementById("track").getElementsByClassName("num");
         for (var j = 1; j < 6; j++) {
           $("#container .slide:nth-of-type(" + (j)+ ")").stop().animate({"margin-left":"-100%"});
           $("#track .num:nth-of-type(" + (j) + ")").removeClass("selected");
         }
-        $("#container .slide:nth-of-type(" + (1)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
-        $("#track .num:nth-of-type(" + (1) + ")").addClass("selected");
-        $("#container").css({"background": getBGColor(muT1[1]-1)});
-        break;
-        case 2:
-        var n = imageURLs.length;
-        var next = (2 + 1)%n;
-        var slides = document.getElementById("container").getElementsByClassName("slide");
-        var trackNos = document.getElementById("track").getElementsByClassName("num");
-        for (var j = 1; j < 6; j++) {
-          $("#container .slide:nth-of-type(" + (j)+ ")").stop().animate({"margin-left":"-100%"});
-          $("#track .num:nth-of-type(" + (j) + ")").removeClass("selected");
-        }
-        $("#container .slide:nth-of-type(" + (2)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
-        $("#track .num:nth-of-type(" + (2) + ")").addClass("selected");
-        $("#container").css({"background": getBGColor(muT1[2]-1)});
-        break;
-        case 3:
-        var n = imageURLs.length;
-        var next = (3 + 1)%n;
-        var slides = document.getElementById("container").getElementsByClassName("slide");
-        var trackNos = document.getElementById("track").getElementsByClassName("num");
-        for (var j = 1; j < 6; j++) {
-          $("#container .slide:nth-of-type(" + (j)+ ")").stop().animate({"margin-left":"-100%"});
-          $("#track .num:nth-of-type(" + (j) + ")").removeClass("selected");
-        }
-        $("#container .slide:nth-of-type(" + (3)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
-        $("#track .num:nth-of-type(" + (3) + ")").addClass("selected");
-        $("#container").css({"background": getBGColor(muT1[3]-1)});
-        break;
-        case 4:
-        var n = imageURLs.length;
-        var next = (4 + 1)%n;
-        var slides = document.getElementById("container").getElementsByClassName("slide");
-        var trackNos = document.getElementById("track").getElementsByClassName("num");
-        for (var j = 1; j < 6; j++) {
-          $("#container .slide:nth-of-type(" + (j)+ ")").stop().animate({"margin-left":"-100%"});
-          $("#track .num:nth-of-type(" + (j) + ")").removeClass("selected");
-        }
-        $("#container .slide:nth-of-type(" + (4)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
-        $("#track .num:nth-of-type(" + (4) + ")").addClass("selected");
-        $("#container").css({"background": getBGColor(muT1[4]-1)});
-        break;
-        case 5:
-        var n = imageURLs.length;
-        var next = (5 + 1)%n;
-        var slides = document.getElementById("container").getElementsByClassName("slide");
-        var trackNos = document.getElementById("track").getElementsByClassName("num");
-        for (var j = 1; j < 6; j++) {
-          $("#container .slide:nth-of-type(" + (j)+ ")").stop().animate({"margin-left":"-100%"});
-          $("#track .num:nth-of-type(" + (j) + ")").removeClass("selected");
-        }
-        $("#container .slide:nth-of-type(" + (5)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
-        $("#track .num:nth-of-type(" + (5) + ")").addClass("selected");
-        $("#container").css({"background": getBGColor(muT1[5]-1)});
-        break;
-      }
+        $("#container .slide:nth-of-type(" + (i)+ ")").stop().css({"margin-left": "100%", "display": "block"}).animate({"margin-left": "0%"}) // fadein next slide
+        $("#track .num:nth-of-type(" + (i) + ")").addClass("selected");
+        $("#container").css({"background": getBGColor(muT1[i]-1)});
+
 
 
 
