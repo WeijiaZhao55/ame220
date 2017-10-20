@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='login.js'> </script>
+<link rel="stylesheet" type="text/css" href="style/dialog.css">
+
+<script>
+function start(){
+  dialogLib.start.show("Welcome to MyWeb!","OK, Let's Go!",function(){});
+}
+
+ function loginClicked()
+{
+  dialogLib.login.show("User Name:","PWD:", "OK, log in", "Cancel", function(data1,data2){alert("Success log in! UserName is :" + data1+";  Password is: "+data2)}, function(){alert("User's Cancled")});
+}
+
+ var signupClicked = function()
+{
+  dialogLib.signup.show("Enter Name:", "PWD:","OK, sign in", "Cancel", function(data1,data2){alert("Success sign in! Your name is: " + data1+";  Your Password is: "+data2)}, function(){alert("User's Cancled")});
+}
+</script>
+</head>
+
+<body onload='start()'>
+
+  <button onclick='loginClicked()' style="
+    background-color: cornsilk;
+    font-size: x-large;    border-radius: 45px;"> Login demo </button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button onclick='signupClicked()' style="background-color: aliceblue;
+    font-size: x-large;
+    border-radius: 45px;"> Signup demo </button>
+
+</body>
+
+
+</html>
