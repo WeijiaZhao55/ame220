@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<style>
+#list{
+  width: 220px;
+}
+#selectedItem
+{
+    position: absolute;
+    right: 0px;
+    top: 80px;
+    width: calc(100% - 240px);
+    min-height: 200px;
+}
+#list button{
+  display: block;
+  width: 100%;
+}
+#list button img{
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+#list button h1, #list button h2{
+    text-align: left;
+    width: calc(100% - 60px);
+    margin: 0px;
+    margin-left: 60px;
+}
+</style>
+<script src="asyncReq.js"> </script>
+<script>
+var items;
+function itemSelected(id)
+{
+    var markup = "";
+    markup += "<img src='" + items[id].artworkUrl100 + "'>";
+    markup += "<a target='_blank' href='"+items[id].artistUrl+"'><h1>" + items[id].name + "</h1></a>"
+    markup += "<a target='_blank' href='"+items[id].artworkUrl100+"'><h2>" + items[id].artistName + "</h2></a>"
+    markup += "<a target='_blank' href='"+items[id].genres[0].url+"'><h2>"+items[id].genres[0].name+"</h2></a>"
+    markup += "<a target='_blank' href='"+items[id].genres[1].url+"'><h2>"+items[id].genres[1].name+"</h2></a>"
+    document.getElementById("selectedItem").innerHTML = markup;
+}
+function start()
+{
+  var url = 'https://rss.itunes.apple.com/api/v1/us/apple-music/hot-tracks/all/10/non-explicit.json';
+  loadFile("./getFeed?url=" + url, function(data){
+    console.log(data);
+    data = JSON.parse(data);
+    items = data.feed.results;
+    console.log(items);
+    var markup = "";
+    for(var i = 0; i < items.length; i++){
+      markup += "<button onclick='itemSelected(" + i + ")'>"
+        markup += "<img src='" + items[i].artworkUrl100 + "'>";
+        markup += "<h1>" + items[i].name + "</h1>"
+        markup += "<h2>" + items[i].artistName + "</h2>"
+      markup += "</button>";
+    }
+    document.getElementById("list").innerHTML = markup;
+  });
+}
+</script>
+</head>
+
+<body onload='start()'>
+<h1> RSS READER</h1>
+
+<div id='list'> </div>
+<div id='selectedItem'> </div>
+
+</body>
+</html>
