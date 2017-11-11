@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width, maximum-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+.nowSelected{
+background: gold;
+
+}
+@media (max-width: 480px){
+  #list{
+    width: 100%;
+    display: block;
+  }
+
+  #selectedItem{
+    width: 100%;
+    display:none;
+  }
+  body.selected #list{ /* 添加了selected类后的list不显示*/
+    display: none;
+  }
+  body.selected #theSelect{
+    display:none;
+  }
+  body.selected #selectedItem{  /* 添加了selected类后的selectedItem显示*/
+    display: block;
+  }
+  body.selected #backButton{   /*因为在function itemSelected(id)里给body添加了类：selected,添加了此类后的button显示*/
+    display: block;
+  }
+}
+@media (min-width: 480px){
+body.selected #backButton{   /*因为在function itemSelected(id)里给body添加了类：selected,添加了此类后的button显示*/
+    display: none;
+  }
+#backbutton{
+  display: none;
+}
+  #list{
+    width: 220px;
+  }
+  #selectedItem{
+    width: calc(100% - 240px);
+  }
+}
+#selectedItem
+{
+    position: absolute;
+    right: 0px;
+    top: 80px;
+    min-height: 200px;
+    text-align: center;
+    background: rgba(0,0,0,.1);
+}
+#list button{
+
+  display: block;
+  width: 100%;
+}
+#list button img{ /*注意此种语法：同一个id下且同一个组件（e.g. button）下有许多内部组件，并不完全相同的css*/
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+#list button h1, #list button h2{
+    text-align: left;
+    width: calc(100% - 60px);
+    margin: 0px;
+    margin-left: 60px;
+}
+</style>
+<script src="asyncReq.js"> </script>
+<script>
+var items;
+function itemSelected(id)
+{
+    var markup = "<button onclick='goBack()' id='backButton'>Back</button>";
+    markup += "<img src='" + items[id].artworkUrl100 + "'>";
+    markup += "<a target='_blank' href='" + items[id].url + "'><h1>" + items[id].name + "</h1> (" + items[id].collectionName + ")</a>"
+    markup += "<a target='_blank' href='" + items[id].artistUrl + "'><h2>" + items[id].artistName + "</h2></a>"
+
+    var genres = items[id].genres;
+    markup += "<p> GENRES: <br>"
+    for(var i = 0; i < genres.length; i++){
+      markup += "<a target='_blank' href='" + genres[i].url + "'>" + genres[i].name+ "   </a></br>";
+    }
+    markup += "</p>"
+
+    markup += "<p>" + new Date(items[id].releaseDate).toDateString() + "</p>";
+    markup += "<p>" + items[id].copyright + "</p>";
+    document.getElementById("selectedItem").innerHTML = markup;
+    $("body").addClass("selected");
+    $("#list button").removeClass("nowSelected");
+   $("#list button:nth-of-type("+(id+1)+")").addClass("nowSelected");
+}
+function loadFeed(url)
+{
+  //var url = 'https://rss.itunes.apple.com/api/v1/us/apple-music/hot-tracks/all/10/non-explicit.json';
+  loadFile("./getFeed?url=" + url, function(data){
+    console.log(data);
+    data = JSON.parse(data);
+    items = data.feed.results;
+    console.log(items);
+    var markup = "";
+    for(var i = 0; i < items.length; i++){
+      markup += "<button onclick='itemSelected(" + i + ")'>"
+        markup += "<img src='" + items[i].artworkUrl100 + "'>";
+        markup += "<h1>" + items[i].name + "</h1>"
+        markup += "<h2>" + items[i].artistName + "</h2>"
+      markup += "</button>";
+
+    }
+    document.getElementById("list").innerHTML = markup;
+  });
+}
+
+function start()
+{
+  var url = 'https://rss.itunes.apple.com/api/v1/us/apple-music/hot-tracks/all/10/non-explicit.json';
+  loadFeed(url);
+}
+
+function selectChanged()
+{
+  var obj = document.getElementById('theSelect'); //定位id
+  var index = obj.selectedIndex; // 选中索引
+  var text = obj.options[index].text; // 选中文本
+  var value = obj.options[index].value; // 选中值
+  loadFile("./getFeed?url=" + value, function(data){
+    console.log(data);
+    data = JSON.parse(data);
+    items = data.feed.results;
+    console.log(items);
+    var markup = "";
+    for(var i = 0; i < items.length; i++){
+      markup += "<button onclick='itemSelected(" + i + ")'>"
+        markup += "<img src='" + items[i].artworkUrl100 + "'>";
+        markup += "<h1>" + items[i].name + "</h1>"
+        markup += "<h2>" + items[i].artistName + "</h2>"
+      markup += "</button>";
+
+    }
+    document.getElementById("list").innerHTML = markup;
+  });
+}
+function goBack()
+{
+  $("body").removeClass("selected");
+  var x = '$("#list button").removeClass("nowSelected")'
+  setTimeout(x, 1000);
+}
+</script>
+</head>
+
+<body onload='start()'>
+<h1> RSS READER</h1>
+<select id='theSelect' onchange='selectChanged()'>
+  <option value='https://rss.itunes.apple.com/api/v1/us/apple-music/hot-tracks/all/10/non-explicit.json' selected='selected'> Hot tracks</option>
+  <option value='https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/10/non-explicit.json'> All tracks </option>
+  <option value='https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/10/non-explicit.json'> Recent </option>
+  <option value='https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/10/non-explicit.json'> Albums </option>
+  <option value='https://rss.itunes.apple.com/api/v1/us/itunes-music/top-songs/all/10/non-explicit.json'> Songs </option>
+</select>
+<div id='list'> </div>
+<div id='selectedItem'> </div>
+
+</body>
+</html>
