@@ -128,23 +128,9 @@ function selectChanged()
   var index = obj.selectedIndex; // 选中索引
   var text = obj.options[index].text; // 选中文本
   var value = obj.options[index].value; // 选中值
-  loadFile("./getFeed?url=" + value, function(data){
-    console.log(data);
-    data = JSON.parse(data);
-    items = data.feed.results;
-    console.log(items);
-    var markup = "";
-    for(var i = 0; i < items.length; i++){
-      markup += "<button onclick='itemSelected(" + i + ")'>"
-        markup += "<img src='" + items[i].artworkUrl100 + "'>";
-        markup += "<h1>" + items[i].name + "</h1>"
-        markup += "<h2>" + items[i].artistName + "</h2>"
-      markup += "</button>";
-
-    }
-    document.getElementById("list").innerHTML = markup;
-  });
+  loadFeed(value);
 }
+
 function goBack()
 {
   $("body").removeClass("selected");
