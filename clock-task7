@@ -20,7 +20,7 @@ function setTime(){
   document.getElementById("minN").style.transform="rotate("+mAngle+"deg) translate(-10px)";
   document.getElementById("secN").style.transform="rotate("+sAngle+"deg) translate(-10px)";
 
-  if (h1>6&&h1<18) {
+  if (h1>5&&h1<19) {
     $("#clock").removeClass("clocknight");
     $(".num").removeClass("numnight");
     console.log('现在是白天');
