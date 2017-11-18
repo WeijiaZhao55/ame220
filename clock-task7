@@ -93,6 +93,11 @@ function selectChanged()
   #num12{
     transform: rotate(-90deg) translate(145px)
   }
+  #no12{
+    transform: translate(-5px);
+    transform-origin: 0px;
+    margin-top: 10px;
+  }
   #num1{
     transform: rotate(-60deg) translate(145px)
   }
@@ -101,6 +106,12 @@ function selectChanged()
   }
   #num3{
     transform: rotate(0deg) translate(145px)
+  }
+  #no3{
+      transform: translate(100px);
+      transform-origin: 0px;
+      margin-top: 143px;
+      margin-left: 180px;
   }
   #num4{
     transform: rotate(30deg) translate(145px)
@@ -111,6 +122,11 @@ function selectChanged()
   #num6{
     transform: rotate(90deg) translate(145px)
   }
+  #no6{
+    transform: translate(-3px);
+    transform-origin: 0px;
+    margin-top: 273px;
+  }
   #num7{
     transform: rotate(120deg) translate(145px)
   }
@@ -119,6 +135,12 @@ function selectChanged()
   }
   #num9{
     transform: rotate(180deg) translate(145px)
+  }
+  #no9{
+  transform: translate(-166px);
+  transform-origin: 0px;
+  margin-top: 140px;
+  margin-left: 180px;
   }
   #num10{
     transform: rotate(210deg) translate(145px)
@@ -180,6 +202,11 @@ function selectChanged()
     <div class='needle' id='secN'></div>
     <div class='needle' id='minN'></div>
     <div class='needle' id='hourN'></div>
+    <div class='num' id='no12'>12</div>
+    <div class='num' id='no3'>3</div>
+    <div class='num' id='no6'>6</div>
+    <div class='num' id='no9'>9</div>
   </div>
 </body>
 </html>
+
