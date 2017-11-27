@@ -1,0 +1,380 @@
+<html>
+<head>
+<title>
+  Image Resizer
+</title>
+<style>
+  #imagePreview{
+      display: block;
+  }
+</style>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+               crossorigin="anonymous"></script>
+
+<script>
+var MAX_WIDTH1 = 29;
+var MAX_HEIGHT1 = 29;
+var maxw2 = 40;
+var maxh2 = 40;
+var maxw3 = 58;
+var maxh3 = 58;
+var maxw4 = 76;
+var maxh4 = 76;
+var maxw5 = 80;
+var maxh5 = 80;
+var maxw6 = 87;
+var maxh6 = 87;
+var maxw7 = 120;
+var maxh7 = 120;
+var maxw8 = 152;
+var maxh8 = 152;
+var maxw9 = 180;
+var maxh9 = 180;
+var maxw10 = 512;
+var maxh10 = 512;
+var maxw11 = 1024;
+var maxh11 = 1024;
+var imageUploaded = function()
+{
+   var file = $('#uploadImage').get(0);
+   if(file.files[0].type.split("/")[0].toLowerCase() != "image"){
+        alert("Incorrect file type -- Please ensure you are uploading an image file.");
+        return;
+   }
+
+   if ( file.files && file.files[0] && file.files[0].type.split("/")[0].toLowerCase() === "image") {
+        var FR = new FileReader();
+        var FR2=new FileReader();
+        var FR3=new FileReader();
+        var FR4=new FileReader();
+        var FR5=new FileReader();
+        var FR6=new FileReader();
+        var FR7=new FileReader();
+        var FR8=new FileReader();
+        var FR9=new FileReader();
+        var FR10=new FileReader();
+        var FR11=new FileReader();
+
+      FR.onload = function(e) {
+            var data = e.target.result;
+            var canvas = document.createElement("canvas");
+            var img = document.createElement("img");
+
+            img.onload= function(){
+                 var width = img.width;
+                 var height = img.height;
+                 var w21 = MAX_WIDTH1;
+                 var h21= MAX_HEIGHT1;
+
+                canvas.width = MAX_WIDTH1;
+                canvas.height = MAX_HEIGHT1;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, w21, h21);
+                var base64St = canvas.toDataURL("image/png");
+                document.getElementById("imagePreview1").src = base64St;
+                document.getElementById("imagePreview1").style.height = MAX_HEIGHT1 + "px";
+                document.getElementById("imagePreview1").style.width= MAX_WIDTH1 + "px";
+            }
+            img.src = data;
+        };
+        FR.readAsDataURL( file.files[0] );
+
+     FR2.onload = function(e) {
+            var data = e.target.result;
+            var canvas2 = document.createElement("canvas");
+
+            var img2 = document.createElement("img");
+
+            img2.onload= function(){
+                 var width = img2.width;
+                 var height = img2.height;
+                 var w22 = maxw2;
+                 var h22= maxh2;
+
+                canvas2.width =maxw2;
+                canvas2.height = maxh2;
+                var ctx = canvas2.getContext("2d");
+                ctx.drawImage(img2, 0, 0, w22, h22);
+                var base64St = canvas2.toDataURL("image/png");
+                document.getElementById("imagePreview2").src = base64St;
+                document.getElementById("imagePreview2").style.height = maxw2 + "px";
+                document.getElementById("imagePreview2").style.width= maxh2 + "px";
+            }
+            img2.src = data;
+        };
+        FR2.readAsDataURL( file.files[0] );
+
+        FR3.onload = function(e) {
+               var data = e.target.result;
+               var canvas3 = document.createElement("canvas");
+
+               var img3 = document.createElement("img");
+
+               img3.onload= function(){
+                    var width = img3.width;
+                    var height = img3.height;
+                    var w23 = maxw3;
+                    var h23= maxh3;
+
+                   canvas3.width =maxw3;
+                   canvas3.height = maxh3;
+                   var ctx = canvas3.getContext("2d");
+                   ctx.drawImage(img3, 0, 0, w23, h23);
+                   var base64St = canvas3.toDataURL("image/png");
+                   document.getElementById("imagePreview3").src = base64St;
+                   document.getElementById("imagePreview3").style.height = maxw3 + "px";
+                   document.getElementById("imagePreview3").style.width= maxh3 + "px";
+               }
+               img3.src = data;
+           };
+           FR3.readAsDataURL( file.files[0] );
+
+           FR4.onload = function(e) {
+                  var data = e.target.result;
+                  var canvas4 = document.createElement("canvas");
+
+                  var img4 = document.createElement("img");
+
+                  img4.onload= function(){
+                       var width = img4.width;
+                       var height = img4.height;
+                       var w24 = maxw4;
+                       var h24= maxh4;
+
+                      canvas4.width =maxw4;
+                      canvas4.height = maxh4;
+                      var ctx = canvas4.getContext("2d");
+                      ctx.drawImage(img4, 0, 0, w24, h24);
+                      var base64St = canvas4.toDataURL("image/png");
+                      document.getElementById("imagePreview4").src = base64St;
+                      document.getElementById("imagePreview4").style.height = maxw4 + "px";
+                      document.getElementById("imagePreview4").style.width= maxh4 + "px";
+                  }
+                  img4.src = data;
+              };
+              FR4.readAsDataURL( file.files[0] );
+
+              FR5.onload = function(e) {
+                     var data = e.target.result;
+                     var canvas5 = document.createElement("canvas");
+
+                     var img5 = document.createElement("img");
+
+                     img5.onload= function(){
+                          var width = img5.width;
+                          var height = img5.height;
+                          var w25 = maxw5;
+                          var h25= maxh5;
+
+                         canvas5.width =maxw5;
+                         canvas5.height = maxh5;
+                         var ctx = canvas5.getContext("2d");
+                         ctx.drawImage(img5, 0, 0, w25, h25);
+                         var base64St = canvas5.toDataURL("image/png");
+                         document.getElementById("imagePreview5").src = base64St;
+                         document.getElementById("imagePreview5").style.height = maxw5 + "px";
+                         document.getElementById("imagePreview5").style.width= maxh5 + "px";
+                     }
+                     img5.src = data;
+                 };
+                 FR5.readAsDataURL( file.files[0] );
+
+                 FR6.onload = function(e) {
+                        var data = e.target.result;
+                        var canvas6 = document.createElement("canvas");
+
+                        var img6 = document.createElement("img");
+
+                        img6.onload= function(){
+                             var width = img6.width;
+                             var height = img6.height;
+                             var w26 = maxw6;
+                             var h26= maxh6;
+
+                            canvas6.width =maxw6;
+                            canvas6.height = maxh6;
+                            var ctx = canvas6.getContext("2d");
+                            ctx.drawImage(img6, 0, 0, w26, h26);
+                            var base64St = canvas6.toDataURL("image/png");
+                            document.getElementById("imagePreview6").src = base64St;
+                            document.getElementById("imagePreview6").style.height = maxw6 + "px";
+                            document.getElementById("imagePreview6").style.width= maxh6 + "px";
+                        }
+                        img6.src = data;
+                    };
+                    FR6.readAsDataURL( file.files[0] );
+
+                    FR7.onload = function(e) {
+                           var data = e.target.result;
+                           var canvas7 = document.createElement("canvas");
+
+                           var img7 = document.createElement("img");
+
+                           img7.onload= function(){
+                                var width = img7.width;
+                                var height = img7.height;
+                                var w27 = maxw7;
+                                var h27= maxh7;
+
+                               canvas7.width =maxw7;
+                               canvas7.height = maxh7;
+                               var ctx = canvas7.getContext("2d");
+                               ctx.drawImage(img7, 0, 0, w27, h27);
+                               var base64St = canvas7.toDataURL("image/png");
+                               document.getElementById("imagePreview7").src = base64St;
+                               document.getElementById("imagePreview7").style.height = maxw7 + "px";
+                               document.getElementById("imagePreview7").style.width= maxh7 + "px";
+                           }
+                           img7.src = data;
+                       };
+                       FR7.readAsDataURL( file.files[0] );
+
+                       FR8.onload = function(e) {
+                              var data = e.target.result;
+                              var canvas8 = document.createElement("canvas");
+
+                              var img8 = document.createElement("img");
+
+                              img8.onload= function(){
+                                   var width = img8.width;
+                                   var height = img8.height;
+                                   var w28 = maxw8;
+                                   var h28= maxh8;
+
+                                  canvas8.width =maxw8;
+                                  canvas8.height = maxh8;
+                                  var ctx = canvas8.getContext("2d");
+                                  ctx.drawImage(img8, 0, 0, w28, h28);
+                                  var base64St = canvas8.toDataURL("image/png");
+                                  document.getElementById("imagePreview8").src = base64St;
+                                  document.getElementById("imagePreview8").style.height = maxw8 + "px";
+                                  document.getElementById("imagePreview8").style.width= maxh8 + "px";
+                              }
+                              img8.src = data;
+                          };
+                          FR8.readAsDataURL( file.files[0] );
+
+                          FR9.onload = function(e) {
+                                 var data = e.target.result;
+                                 var canvas9 = document.createElement("canvas");
+
+                                 var img9 = document.createElement("img");
+
+                                 img9.onload= function(){
+                                      var width = img9.width;
+                                      var height = img9.height;
+                                      var w29 = maxw9;
+                                      var h29= maxh9;
+
+                                     canvas9.width =maxw9;
+                                     canvas9.height = maxh9;
+                                     var ctx = canvas9.getContext("2d");
+                                     ctx.drawImage(img9, 0, 0, w29, h29);
+                                     var base64St = canvas9.toDataURL("image/png");
+                                     document.getElementById("imagePreview9").src = base64St;
+                                     document.getElementById("imagePreview9").style.height = maxw9 + "px";
+                                     document.getElementById("imagePreview9").style.width= maxh9 + "px";
+                                 }
+                                 img9.src = data;
+                             };
+                             FR9.readAsDataURL( file.files[0] );
+
+                             FR10.onload = function(e) {
+                                    var data = e.target.result;
+                                    var canvas10 = document.createElement("canvas");
+
+                                    var img10 = document.createElement("img");
+
+                                    img10.onload= function(){
+                                         var width = img10.width;
+                                         var height = img10.height;
+                                         var w210 = maxw10;
+                                         var h210= maxh10;
+
+                                        canvas10.width =maxw10;
+                                        canvas10.height = maxh10;
+                                        var ctx = canvas10.getContext("2d");
+                                        ctx.drawImage(img10, 0, 0, w210, h210);
+                                        var base64St = canvas10.toDataURL("image/png");
+                                        document.getElementById("imagePreview10").src = base64St;
+                                        document.getElementById("imagePreview10").style.height = maxw10 + "px";
+                                        document.getElementById("imagePreview10").style.width= maxh10 + "px";
+                                    }
+                                    img10.src = data;
+                                };
+                                FR10.readAsDataURL( file.files[0] );
+
+                                FR11.onload = function(e) {
+                                       var data = e.target.result;
+                                       var canvas11 = document.createElement("canvas");
+
+                                       var img11 = document.createElement("img");
+
+                                       img11.onload= function(){
+                                            var width = img11.width;
+                                            var height = img11.height;
+                                            var w211 = maxw11;
+                                            var h211= maxh11;
+
+                                           canvas11.width=maxw11;
+                                           canvas11.height = maxh11;
+                                           var ctx = canvas11.getContext("2d");
+                                           ctx.drawImage(img11, 0, 0, w211, h211);
+                                           var base64St = canvas11.toDataURL("image/png");
+                                           document.getElementById("imagePreview11").src = base64St;
+                                           document.getElementById("imagePreview11").style.height = maxw11 + "px";
+                                           document.getElementById("imagePreview11").style.width= maxh11 + "px";
+                                       }
+                                       img11.src = data;
+                                   };
+                                   FR11.readAsDataURL( file.files[0] );
+   }
+}
+</script>
+
+</head>
+
+<body>
+  <input type="file" name="uploadImage" id="uploadImage" onchange="imageUploaded()">
+</br>
+  <div>Size:29*29</div>
+  <img id="imagePreview1">
+  </br>
+  <div>Size:40*40</div>
+  <img id="imagePreview2">
+  </br>
+  <div>Size:58*58</div>
+  <img id="imagePreview3">
+  </br>
+  <div>Size:76*76</div>
+  <img id="imagePreview4">
+  </br>
+  <div>Size:80*80</div>
+  <img id="imagePreview5">
+  </br>
+  <div>Size:87*87</div>
+  <img id="imagePreview6">
+  </br>
+  <div>Size:120*120</div>
+  <img id="imagePreview7">
+  </br>
+  <div>Size:152*152</div>
+  <img id="imagePreview8">
+  </br>
+  <div>Size:512*512</div>
+  <img id="imagePreview9">
+  </br>
+  <div>Size:512*512</div>
+  <img id="imagePreview10">
+  </br>
+  <div>Size:1024*1024</div>
+  <img id="imagePreview11">
+  </br>
+
+
+</body>
+
+
+</html>
